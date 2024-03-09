@@ -3,6 +3,7 @@ package bridge.features
 
 import bridge.Bridge.Companion.mc
 import bridge.config.Config
+import bridge.utils.addColor
 import bridge.utils.modMessage
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -60,16 +61,18 @@ class EchoWebSocketListener : WebSocketListener() {
         modMessage("§aConnected to server.")
         this.webSocket = webSocket
         connectionState = ConnectionState.OPEN
-        webSocket.send("{\"action\": \"setName\", \"name\": \"${mc.session?.username}\"}")
+
+        webSocket.send("{\"action\": \"setName\", \"name\": \"${Config.rank}${mc.session?.username}\", \"token\": \"${Config.guildToken}\"}")
     }
 
     override fun onMessage(webSocket: WebSocket, text: String) {
         println(text)
         val json1 = JsonParser().parse(text) as JsonObject
-        //if (json1["systemMessage"] != null) modMessage(json1["systemMessage"].toString().replace("\"", ""))
+        if (json1["systemMessage"] != null && Config.toggleJoinedMessage) modMessage(addColor(json1["systemMessage"].toString().replace("\"", "")))
         if (json1["publicMessage"] != null) {
             val message = json1["publicMessage"].toString().replace("\"", "").split(":")
-            modMessage("§2Guild > §6${message[0]}§f:${message[1]}")
+            val coloredMessage = addColor("${Config.prefix}${message[0]}§f:${message[1]}${Config.suffix}")
+            modMessage(coloredMessage)
         }
         reconnected = false
     }

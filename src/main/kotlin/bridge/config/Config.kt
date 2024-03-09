@@ -9,9 +9,57 @@ import java.io.File
 object Config : Vigilant(File("./config/Bridge/config.toml"), "Bridge") {
 
     @Property(
+        name = "Prefix",
+        description = "The prefix for the chat command",
+        category = "Chat",
+        type = PropertyType.TEXT,
+    )
+    var prefix = "&2Guild > &6"
+
+    @Property(
+        name = "Suffix",
+        description = "The suffix for the chat command",
+        category = "Chat",
+        type = PropertyType.TEXT,
+    )
+    var suffix = "&r"
+
+    @Property(
+        name = "Rank",
+        description = "Your Hypixel Rank",
+        category = "Chat",
+        type = PropertyType.TEXT,
+    )
+    var rank = "&6[MVP&0++&6] "
+
+    @Property(
+        name = "Guild Token",
+        description = "Your Hypixel Guild Token",
+        category = "Chat",
+        type = PropertyType.TEXT,
+    )
+    var guildToken = ""
+
+    @Property(
+        name = "Toggle Joined Message",
+        description = "Toggles the joined message",
+        category = "Chat",
+        type = PropertyType.SWITCH,
+    )
+    var toggleJoinedMessage = true
+
+    @Property(
+        name = "Toggle Guild Chat",
+        description = "Toggles the guild chat",
+        category = "Chat",
+        type = PropertyType.SWITCH,
+    )
+    var toggleGuildChat = true
+
+    @Property(
         name = "Connect to WebSocket",
         type = PropertyType.BUTTON,
-        category = "Bridge",
+        category = "WebSocket",
         placeholder = "Connect"
     )
     fun web() {
@@ -21,7 +69,7 @@ object Config : Vigilant(File("./config/Bridge/config.toml"), "Bridge") {
     @Property(
         name = "Close WebSocket",
         type = PropertyType.BUTTON,
-        category = "Bridge",
+        category = "WebSocket",
         placeholder = "Close"
     )
     fun close() {
@@ -31,7 +79,7 @@ object Config : Vigilant(File("./config/Bridge/config.toml"), "Bridge") {
     @Property(
         name = "WebSocket URL",
         type = PropertyType.TEXT,
-        category = "Bridge",
+        category = "WebSocket",
     )
     var url = ""
 
