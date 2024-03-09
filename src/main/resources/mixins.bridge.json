@@ -1,0 +1,12 @@
+{
+  "package": "me.bridge.mixin",
+  "refmap": "mixins.bridge.refmap.json",
+  "minVersion": "0.7",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+
+  ],
+  "client": [
+
+  ]
+}
