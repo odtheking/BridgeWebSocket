@@ -5,6 +5,7 @@ import bridge.commands.ChatCommand
 import bridge.config.Config
 import bridge.features.unloaded
 import bridge.features.webber
+import bridge.utils.modMessage
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -53,6 +54,12 @@ class Bridge {
             delay(300)
             webber.connect()
             unloaded = false
+
+            while (!unloaded) {
+                delay(80000)
+                modMessage("sending keep alive message")
+                webber.send("{\"action\": \"sendPrivate\", \"message\": \"&6[MVP&0++&6] &2Guild &r&6has connected to the server.\"}")
+            }
         }
     }
 

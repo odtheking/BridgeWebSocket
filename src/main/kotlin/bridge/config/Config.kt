@@ -14,7 +14,7 @@ object Config : Vigilant(File("./config/Bridge/config.toml"), "Bridge") {
         category = "Chat",
         type = PropertyType.TEXT,
     )
-    var prefix = "&2Guild > &6"
+    var prefix = "&2Guild >&6"
 
     @Property(
         name = "Suffix",
@@ -30,7 +30,7 @@ object Config : Vigilant(File("./config/Bridge/config.toml"), "Bridge") {
         category = "Chat",
         type = PropertyType.TEXT,
     )
-    var rank = "&6[MVP&0++&6] "
+    var rank = "&6[MVP&0++&6]"
 
     @Property(
         name = "Guild Token",

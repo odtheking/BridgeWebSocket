@@ -39,7 +39,6 @@ class Webber {
     }
 
     fun send(message: String) {
-        println("Sending message: $message")
         webSocket?.send(message)
     }
 
@@ -57,21 +56,19 @@ class EchoWebSocketListener : WebSocketListener() {
     private var webSocket: WebSocket? = null
 
     override fun onOpen(webSocket: WebSocket, response: Response) {
-        println("Connected to server")
         modMessage("§aConnected to server.")
         this.webSocket = webSocket
         connectionState = ConnectionState.OPEN
 
-        webSocket.send("{\"action\": \"setName\", \"name\": \"${Config.rank}${mc.session?.username}\", \"token\": \"${Config.guildToken}\"}")
+        webSocket.send("{\"action\": \"setName\", \"name\": \"${Config.rank} ${mc.session?.username}\", \"token\": \"${Config.guildToken}\"}")
     }
 
     override fun onMessage(webSocket: WebSocket, text: String) {
-        println(text)
         val json1 = JsonParser().parse(text) as JsonObject
         if (json1["systemMessage"] != null && Config.toggleJoinedMessage) modMessage(addColor(json1["systemMessage"].toString().replace("\"", "")))
         if (json1["publicMessage"] != null) {
             val message = json1["publicMessage"].toString().replace("\"", "").split(":")
-            val coloredMessage = addColor("${Config.prefix}${message[0]}§f:${message[1]}${Config.suffix}")
+            val coloredMessage = addColor("${Config.prefix} ${message[0]}§f:${message[1]}${Config.suffix}")
             modMessage(coloredMessage)
         }
         reconnected = false
@@ -79,7 +76,6 @@ class EchoWebSocketListener : WebSocketListener() {
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-        println("Closing: $code / $reason")
         modMessage("§cWebSocket Connection Closed.")
         connectionState = ConnectionState.CLOSED
 
