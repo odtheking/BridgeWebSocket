@@ -1,10 +1,9 @@
 package bridge.config
 
-import gg.essential.vigilance.Vigilant
-import gg.essential.vigilance.data.*
 import bridge.features.webber
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import gg.essential.vigilance.Vigilant
+import gg.essential.vigilance.data.Property
+import gg.essential.vigilance.data.PropertyType
 import java.io.File
 
 object Config : Vigilant(File("./config/Bridge/config.toml"), "Bridge") {

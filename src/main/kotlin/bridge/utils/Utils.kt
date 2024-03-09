@@ -1,11 +1,9 @@
 package bridge.utils
 
-import bridge.Bridge
+import bridge.Bridge.Companion.mc
 import net.minecraft.util.ChatComponentText
-import net.minecraft.util.StringUtils
-
 
 fun modMessage(message: Any) {
-    if (Bridge.mc.thePlayer == null) return
-    Bridge.mc.thePlayer?.addChatMessage(ChatComponentText(message.toString()))
+    if (mc.thePlayer == null) return
+    mc.thePlayer?.addChatMessage(ChatComponentText(message.toString()))
 }
