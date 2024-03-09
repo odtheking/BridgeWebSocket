@@ -13,6 +13,10 @@ fun sendGuildMessage(message: String) {
     webber.send("{\"action\": \"sendPublic\", \"message\": \"$message\"}")
 }
 
+fun sendPrivateMessage(username: String, message: String) {
+    webber.send("{\"action\": \"sendPrivate\", \"message\": \"$message\", \"to\": \"$message\"}")
+}
+
 fun addColor(message: String?): String {
     return message.toString().replace("(?<!\\\\)&(?![^0-9a-fk-or]|$)".toRegex(), "\u00a7")
 }

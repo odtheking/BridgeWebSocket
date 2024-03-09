@@ -64,10 +64,10 @@ class EchoWebSocketListener : WebSocketListener() {
     }
 
     override fun onMessage(webSocket: WebSocket, text: String) {
-        val json1 = JsonParser().parse(text) as JsonObject
-        if (json1["systemMessage"] != null && Config.toggleJoinedMessage) modMessage(addColor(json1["systemMessage"].toString().replace("\"", "")))
-        if (json1["publicMessage"] != null) {
-            val message = json1["publicMessage"].toString().replace("\"", "").split(":")
+        val messageJson = JsonParser().parse(text) as JsonObject
+        if (messageJson["systemMessage"] != null && Config.toggleJoinedMessage) modMessage(addColor(messageJson["systemMessage"].toString().replace("\"", "")))
+        if (messageJson["publicMessage"] != null) {
+            val message = messageJson["publicMessage"].toString().replace("\"", "").split(":")
             val coloredMessage = addColor("${Config.prefix} ${message[0]}§f:${message[1]}${Config.suffix}")
             modMessage(coloredMessage)
         }

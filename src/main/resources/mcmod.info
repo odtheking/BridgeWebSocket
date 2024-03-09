@@ -2,7 +2,7 @@
   {
     "modid": "bridge",
     "name": "Bridge",
-    "description": "A mod that is used as an example.",
+    "description": "A websocket chat client.",
     "version": "${version}",
     "mcversion": "1.8.9",
     "url": "",

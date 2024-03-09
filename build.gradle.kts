@@ -45,10 +45,6 @@ dependencies {
     implementation("gg.essential:essential-1.8.9-forge:12132+g6e2bf4dc5")
 
     api("com.mojang:brigadier:1.0.18")
-    shadowImpl("com.github.Stivais:Commodore:9342db41b1") {
-        exclude(module = "kotlin-stdlib-jdk8")
-        exclude(module = "kotlin-reflect")
-    }
 }
 
 loom {

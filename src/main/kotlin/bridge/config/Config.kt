@@ -14,7 +14,7 @@ object Config : Vigilant(File("./config/Bridge/config.toml"), "Bridge") {
         category = "Chat",
         type = PropertyType.TEXT,
     )
-    var prefix = "&2Guild >&6"
+    var prefix = "&2Guild >"
 
     @Property(
         name = "Suffix",
@@ -22,7 +22,7 @@ object Config : Vigilant(File("./config/Bridge/config.toml"), "Bridge") {
         category = "Chat",
         type = PropertyType.TEXT,
     )
-    var suffix = "&r"
+    var suffix = ""
 
     @Property(
         name = "Rank",
@@ -56,7 +56,7 @@ object Config : Vigilant(File("./config/Bridge/config.toml"), "Bridge") {
     )
     var toggleGuildChat = true
 
-    @Property(
+   /* @Property(
         name = "Connect to WebSocket",
         type = PropertyType.BUTTON,
         category = "WebSocket",
@@ -64,7 +64,7 @@ object Config : Vigilant(File("./config/Bridge/config.toml"), "Bridge") {
     )
     fun web() {
         webber.connect()
-    }
+    }*/
 
     @Property(
         name = "Close WebSocket",
