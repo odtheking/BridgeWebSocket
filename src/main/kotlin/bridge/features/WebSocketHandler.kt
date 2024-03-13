@@ -20,19 +20,16 @@ class Webber {
 
     fun connect() {
         runBlocking {
-            val client = OkHttpClient.Builder()
-                .readTimeout(0, TimeUnit.SECONDS)
-                .build()
+            val client = OkHttpClient.Builder().readTimeout(0, TimeUnit.SECONDS).build()
 
-            val request = Request.Builder()
-                .url(url = Config.url)
-                .build()
+            if (Config.url == "") return@runBlocking println("Please set the WebSocket URL in the config!")
+            val request = Request.Builder().url(url = Config.url).build()
+
             val webSocketListener = EchoWebSocketListener()
             client.newWebSocket(request, webSocketListener)
 
-            // Ensure the connection is established
             while (webSocketListener.connectionState != EchoWebSocketListener.ConnectionState.OPEN) {
-                delay(100) // Check every 100 milliseconds
+                delay(100)
             }
             webSocket = webSocketListener.getWebSocket()
         }
@@ -66,9 +63,9 @@ class EchoWebSocketListener : WebSocketListener() {
     override fun onMessage(webSocket: WebSocket, text: String) {
         val messageJson = JsonParser().parse(text) as JsonObject
         if (messageJson["systemMessage"] != null && Config.toggleJoinedMessage) modMessage(addColor(messageJson["systemMessage"].toString().replace("\"", "")))
-        if (messageJson["publicMessage"] != null) {
-            val message = messageJson["publicMessage"].toString().replace("\"", "").split(":")
-            val coloredMessage = addColor("${Config.prefix} ${message[0]}§f:${message[1]}${Config.suffix}")
+        if (messageJson["publicMessage"] != null && Config.guildChatMessages) {
+            val message = messageJson["publicMessage"].toString().replace("\"", "")
+            val coloredMessage = addColor("${Config.prefix} ${message}${Config.suffix}")
             modMessage(coloredMessage)
         }
         reconnected = false

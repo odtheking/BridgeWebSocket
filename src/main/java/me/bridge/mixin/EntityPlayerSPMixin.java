@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public class EntityPlayerSPMixin {
     @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
     private void onSendChatMessage(String message, CallbackInfo ci) {
-        if (Config.INSTANCE.getToggleGuildChat()) {
+        if (Config.INSTANCE.getToggleGuildChat() && !message.startsWith("/")) {
             UtilsKt.sendGuildMessage(message);
             ci.cancel();
         }

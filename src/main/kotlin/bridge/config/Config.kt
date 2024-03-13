@@ -54,17 +54,15 @@ object Config : Vigilant(File("./config/Bridge/config.toml"), "Bridge") {
         category = "Chat",
         type = PropertyType.SWITCH,
     )
-    var toggleGuildChat = true
+    var guildChatMessages = true
 
-   /* @Property(
-        name = "Connect to WebSocket",
-        type = PropertyType.BUTTON,
-        category = "WebSocket",
-        placeholder = "Connect"
+    @Property(
+        name = "Toggle Chat Channel to guild",
+        description = "Toggles the chat where it sends messages to",
+        category = "Chat",
+        type = PropertyType.SWITCH,
     )
-    fun web() {
-        webber.connect()
-    }*/
+    var toggleGuildChat = true
 
     @Property(
         name = "Close WebSocket",
