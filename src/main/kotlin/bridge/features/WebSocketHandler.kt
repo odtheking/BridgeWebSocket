@@ -57,7 +57,7 @@ class EchoWebSocketListener : WebSocketListener() {
         this.webSocket = webSocket
         connectionState = ConnectionState.OPEN
 
-        webSocket.send("{\"action\": \"setName\", \"name\": \"${Config.rank} ${mc.session?.username}\", \"token\": \"${Config.guildToken}\"}")
+        webSocket.send("{\"action\": \"setName\", \"name\": \"${mc.thePlayer.displayName.formattedText}\", \"token\": \"${Config.guildToken}\"}")
     }
 
     override fun onMessage(webSocket: WebSocket, text: String) {

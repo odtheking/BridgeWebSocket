@@ -25,14 +25,6 @@ object Config : Vigilant(File("./config/Bridge/config.toml"), "Bridge") {
     var suffix = ""
 
     @Property(
-        name = "Rank",
-        description = "Your Hypixel Rank",
-        category = "Chat",
-        type = PropertyType.TEXT,
-    )
-    var rank = "&6[MVP&0++&6]"
-
-    @Property(
         name = "Guild Token",
         description = "Your Hypixel Guild Token",
         category = "Chat",
